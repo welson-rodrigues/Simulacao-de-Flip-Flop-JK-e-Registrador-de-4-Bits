@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flip-Flop JK e Registrador de 4 Bits</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <h1>Simulação de Flip-Flop JK e Registrador de 4 Bits</h1>
+
+    <!-- Flip-Flop JK -->
+    <div class="flip-flop">
+        <h2>Flip-Flop JK</h2>
+        <label for="j">J:</label>
+        <input type="number" id="j" min="0" max="1" value="0">
+        <label for="k">K:</label>
+        <input type="number" id="k" min="0" max="1" value="0">
+        <label for="clock">Clock:</label>
+        <input type="number" id="clock" min="0" max="1" value="0">
+        <label for="reset">Reset:</label>
+        <input type="number" id="reset" min="0" max="1" value="0">
+        <button onclick="updateFlipFlop()">Atualizar Flip-Flop</button>
+        
+
+         <!-- Saídas Q e Q' com LEDs -->
+         <div class="output">
+            <p>Saída Q:</p>
+            <div id="ledQ" class="led off"></div>
+        </div>
+        <div class="output">
+            <p>Saída Q':</p>
+            <div id="ledQNot" class="led on"></div>
+        </div>
+    </div>
+        
+        <!-- Representação gráfica -->
+        <canvas id="flipFlopCanvas" width="300" height="200"></canvas>
+    </div>
+
+    <!-- Animação do Clock -->
+    <div class="clock-animation">
+        <h2>Animção do Clock</h2>
+        <div id="clockSignal"></div>
+    </div>
+
+    <!-- Contador de Pulsos -->
+    <div class="pulse-counter">
+        <h2>Contador de Pulsos</h2>
+        <p>Pulsos de Clock: <span id="pulseCount">0</span></p>
+    </div>
+
+    <!-- Registrador de 4 Bits -->
+    <div class="registrador">
+        <h2>Registrador de 4 Bits</h2>
+        <button onclick="updateRegistrador()">Atualizar Registrador</button>
+        <p>Estado do Registrador: <span id="registradorState">0000</span></p>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

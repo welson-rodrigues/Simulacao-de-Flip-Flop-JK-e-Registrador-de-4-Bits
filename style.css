@@ -1,0 +1,115 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 20px;
+    padding: 0;
+    background-color: #f4f4f4;
+}
+
+h1, h2 {
+    color: #333;
+}
+
+.flip-flop, .registrador {
+    background-color: #fff;
+    padding: 20px;
+    margin-bottom: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+label {
+    margin-right: 10px;
+}
+
+input {
+    width: 50px;
+    padding: 5px;
+    margin-right: 10px;
+}
+
+button {
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+p {
+    font-size: 18px;
+    margin-top: 10px;
+}
+
+
+
+/* Estilos anteriores... */
+
+/* Animação do Clock */
+#clockSignal {
+    width: 100px;
+    height: 50px;
+    background-color: #007bff;
+    position: relative;
+    animation: clockPulse 2s infinite;
+}
+
+@keyframes clockPulse {
+    0%, 100% {
+        height: 50px;
+    }
+    50% {
+        height: 100px;
+    }
+}
+
+/* Canvas do Flip-Flop */
+#flipFlopCanvas {
+    border: 1px solid #000;
+    margin-top: 20px;
+    background-color: #f9f9f9;
+}
+
+/* Estilo para os LEDs */
+.led {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    margin: 10px auto;
+    background-color: #ccc; /* Cor padrão (apagado) */
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* LED aceso (verde) */
+.led.on {
+    background-color: #00ff00; /* Verde */
+    box-shadow: 0 0 10px #00ff00;
+}
+
+/* LED apagado (cinza) */
+.led.off {
+    background-color: #ccc; /* Cinza */
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+}
+
+/* Efeito de brilho para o LED aceso */
+@keyframes glow {
+    0% {
+        box-shadow: 0 0 10px #00ff00;
+    }
+    50% {
+        box-shadow: 0 0 20px #00ff00;
+    }
+    100% {
+        box-shadow: 0 0 10px #00ff00;
+    }
+}
+
+.led.on {
+    animation: glow 1.5s infinite;
+}
