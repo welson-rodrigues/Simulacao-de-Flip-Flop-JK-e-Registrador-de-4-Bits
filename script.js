@@ -35,7 +35,15 @@ function updateFlipFlop() {
     animateDataFlow(J, K, clock, reset);
 
     // Atualiza os Flip-Flops do registrador
-    updateRegistradorDetails();
+    /* updateRegistradorDetails(); */
+
+    // Controla a animação do clock
+    const clockWave = document.getElementById('clockWave');
+    if (clock === 0) {
+        clockWave.classList.add('paused'); // Pausa a animação
+    } else {
+        clockWave.classList.remove('paused'); // Continua a animação
+    }
 }
 
 // Função para animar o fluxo de dados
@@ -141,12 +149,12 @@ function updateRegistrador() {
 }
 
 // Função para atualizar os detalhes do registrador
-function updateRegistradorDetails() {
+/* function updateRegistradorDetails() {
     document.getElementById('ff1').textContent = registrador[0];
     document.getElementById('ff2').textContent = registrador[1];
     document.getElementById('ff3').textContent = registrador[2];
     document.getElementById('ff4').textContent = registrador[3];
-}
+} */
 
 // Inicializa o desenho do Flip-Flop
 drawFlipFlop();
@@ -155,4 +163,4 @@ drawFlipFlop();
 updateLEDs();
 
 // Inicializa os detalhes do registrador
-updateRegistradorDetails();
+/* updateRegistradorDetails(); */

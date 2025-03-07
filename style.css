@@ -216,3 +216,8 @@ footer p {
     font-size: 16px;
     transition: background-color 0.3s ease, transform 0.2s ease;
 }
+
+/* Pausar animação clock */
+.paused {
+    animation-play-state: paused;
+}
