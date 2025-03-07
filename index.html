@@ -164,6 +164,40 @@
             background-color: #f9f9f9;
         }
 
+        #clockSignal {
+            width: 200px;
+            height: 100px;
+            position: relative;
+            margin: 20px auto;
+            background-color: #f9f9f9;
+            border: 2px solid #007bff;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        #clockWave {
+            width: 100%;
+            height: 100%;
+            background: repeating-linear-gradient(
+                90deg,
+                #007bff,
+                #007bff 50%,
+                transparent 50%,
+                transparent 100%
+            );
+            background-size: 200% 100%;
+            animation: clockWave 2s linear infinite;
+        }
+
+        @keyframes clockWave {
+            0% {
+                background-position: 100% 0;
+            }
+            100% {
+                background-position: 0 0;
+            }
+        }
+
         .row {
             display: flex;
             flex-wrap: wrap;
@@ -178,6 +212,16 @@
 
         footer p {
             color: #d0d7df;
+        }
+        .btnatu{
+            padding: 12px 25px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s ease, transform 0.2s ease;
         }
     </style>
 </head>
@@ -251,7 +295,7 @@
             <!-- Registrador de 4 Bits -->
             <div class="registrador">
                 <h2>Registrador de 4 Bits</h2>
-                <button onclick="updateRegistrador()">Atualizar Registrador</button>
+                <button onclick="updateRegistrador()" class="btnatu">Atualizar Registrador</button>
                 <p>Estado do Registrador: <span id="registradorState">0000</span></p>
             </div>
         </div>
