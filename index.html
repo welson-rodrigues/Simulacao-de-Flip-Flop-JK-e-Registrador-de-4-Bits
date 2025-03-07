@@ -4,59 +4,485 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Flip-Flop JK e Registrador de 4 Bits</title>
-    <link rel="stylesheet" href="style.css">
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f9;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        header {
+            background-color: #2c3e50;
+            color: #fff;
+            padding: 20px 0;
+            text-align: center;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 2.5em;
+        }
+
+        footer {
+            background-color: #2c3e50;
+            color: #fff;
+            text-align: center;
+            padding: 10px 0;
+            margin-top: 40px;
+            box-shadow: 0 -4px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        h1, h2 {
+            color: #2c3e50;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        h1 {
+            color: #d0d7df;
+            font-size: 2.5em;
+            margin-top: 20px;
+        }
+
+        h2 {
+            font-size: 2em;
+            margin-top: 15px;
+        }
+
+        .flip-flop, .registrador, .clock-animation, .pulse-counter, .flip-flop-config, .registrador-details, .explanation {
+            background-color: #fff;
+            padding: 25px;
+            margin: 20px auto;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            max-width: 800px;
+        }
+
+        label {
+            display: inline-block;
+            margin-right: 10px;
+            font-weight: bold;
+            color: #555;
+        }
+
+        input {
+            width: 60px;
+            padding: 8px;
+            margin-right: 15px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+
+        button {
+            padding: 12px 25px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+            transform: translateY(-2px);
+        }
+
+        button:active {
+            transform: translateY(0);
+        }
+
+        p {
+            font-size: 18px;
+            margin-top: 15px;
+            color: #555;
+        }
+
+        .output {
+            display: inline-block;
+            margin: 15px 20px;
+            text-align: center;
+        }
+
+        .led {
+            width: 25px;
+            height: 25px;
+            border-radius: 50%;
+            margin: 10px auto;
+            background-color: #ccc;
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+            transition: background-color 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .led.on {
+            background-color: #00ff00;
+            box-shadow: 0 0 10px #00ff00;
+            animation: glow 1.5s infinite;
+        }
+
+        .led.off {
+            background-color: #ccc;
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+        }
+
+        @keyframes glow {
+            0% {
+                box-shadow: 0 0 10px #00ff00;
+            }
+            50% {
+                box-shadow: 0 0 20px #00ff00;
+            }
+            100% {
+                box-shadow: 0 0 10px #00ff00;
+            }
+        }
+
+        #clockSignal {
+            width: 200px;
+            height: 100px;
+            position: relative;
+            margin: 20px auto;
+            background-color: #f9f9f9;
+            border: 2px solid #007bff;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        #clockWave {
+            width: 100%;
+            height: 100%;
+            background: repeating-linear-gradient(
+                90deg,
+                #007bff,
+                #007bff 50%,
+                transparent 50%,
+                transparent 100%
+            );
+            background-size: 200% 100%;
+            animation: clockWave 2s linear infinite;
+        }
+
+        @keyframes clockWave {
+            0% {
+                background-position: 100% 0;
+            }
+            100% {
+                background-position: 0 0;
+            }
+        }
+
+        #flipFlopCanvas {
+            display: block;
+            margin: 20px auto;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            background-color: #f9f9f9;
+        }
+
+        .pulse-counter {
+            text-align: center;
+        }
+
+        .pulse-counter p {
+            font-size: 20px;
+            font-weight: bold;
+            color: #2c3e50;
+        }
+
+        .registrador {
+            text-align: center;
+        }
+
+        .registrador p {
+            font-size: 20px;
+            font-weight: bold;
+            color: #2c3e50;
+        }
+
+        .flip-flop-config {
+            text-align: center;
+        }
+
+        .nand-gates {
+            display: flex;
+            justify-content: space-around;
+            margin-top: 20px;
+        }
+
+        .nand-gate {
+            text-align: center;
+        }
+
+        .nand-gate .gate {
+            width: 50px;
+            height: 50px;
+            background-color: #007bff;
+            border-radius: 5px;
+            margin: 10px auto;
+        }
+
+        .registrador-details {
+            text-align: center;
+        }
+
+        .flip-flops {
+            display: flex;
+            justify-content: space-around;
+            margin-top: 20px;
+        }
+
+        .flip-flop-individual {
+            text-align: center;
+        }
+
+        .explanation {
+            text-align: center;
+        }
+        footer p{
+            color: #d0d7df;
+        }
+    </style>
 </head>
 <body>
-    <h1>Simulação de Flip-Flop JK e Registrador de 4 Bits</h1>
+    <header>
+        <h1>Simulação de Flip-Flop JK e Registrador de 4 Bits</h1>
+    </header>
 
-    <!-- Flip-Flop JK -->
-    <div class="flip-flop">
-        <h2>Flip-Flop JK</h2>
-        <label for="j">J:</label>
-        <input type="number" id="j" min="0" max="1" value="0">
-        <label for="k">K:</label>
-        <input type="number" id="k" min="0" max="1" value="0">
-        <label for="clock">Clock:</label>
-        <input type="number" id="clock" min="0" max="1" value="0">
-        <label for="reset">Reset:</label>
-        <input type="number" id="reset" min="0" max="1" value="0">
-        <button onclick="updateFlipFlop()">Atualizar Flip-Flop</button>
-        
-
-         <!-- Saídas Q e Q' com LEDs -->
-         <div class="output">
-            <p>Saída Q:</p>
-            <div id="ledQ" class="led off"></div>
+    <div class="container">
+        <!-- Explicação do Funcionamento -->
+        <div class="explanation">
+            <h2>Como Funciona?</h2>
+            <p>
+                O Flip-Flop JK é um circuito sequencial que pode armazenar um bit de informação.
+                Ele possui entradas J (Set), K (Reset), Clock e Reset assíncrono.
+                O registrador de 4 bits é composto por 4 Flip-Flops JK conectados em série.
+            </p>
         </div>
-        <div class="output">
-            <p>Saída Q':</p>
-            <div id="ledQNot" class="led on"></div>
+
+        <!-- Flip-Flop JK -->
+        <div class="flip-flop">
+            <h2>Flip-Flop JK</h2>
+            <label for="j">J:</label>
+            <input type="number" id="j" min="0" max="1" value="0">
+            <label for="k">K:</label>
+            <input type="number" id="k" min="0" max="1" value="0">
+            <label for="clock">Clock:</label>
+            <input type="number" id="clock" min="0" max="1" value="0">
+            <label for="reset">Reset:</label>
+            <input type="number" id="reset" min="0" max="1" value="0">
+            <button onclick="updateFlipFlop()">Atualizar Flip-Flop</button>
+            
+            <!-- Saídas Q e Q' com LEDs -->
+            <div class="output">
+                <p>Saída Q:</p>
+                <div id="ledQ" class="led off"></div>
+            </div>
+            <div class="output">
+                <p>Saída Q':</p>
+                <div id="ledQNot" class="led on"></div>
+            </div>
+            
+            <!-- Representação gráfica -->
+            <canvas id="flipFlopCanvas" width="300" height="200"></canvas>
+        </div>
+
+        <!-- Animação do Clock -->
+        <div class="clock-animation">
+            <h2>Animação do Clock</h2>
+            <div id="clockSignal">
+                <div id="clockWave"></div>
+            </div>
+        </div>
+
+        <!-- Contador de Pulsos -->
+        <div class="pulse-counter">
+            <h2>Contador de Pulsos</h2>
+            <p>Pulsos de Clock: <span id="pulseCount">0</span></p>
+        </div>
+
+        <!-- Registrador de 4 Bits -->
+        <div class="registrador">
+            <h2>Registrador de 4 Bits</h2>
+            <button onclick="updateRegistrador()">Atualizar Registrador</button>
+            <p>Estado do Registrador: <span id="registradorState">0000</span></p>
         </div>
     </div>
+
+    <footer>
+        <p>&copy; 2025 Simulação de Flip-Flop JK e Registrador de 4 Bits</p>
+    </footer>
+
+    <script>
         
-        <!-- Representação gráfica -->
-        <canvas id="flipFlopCanvas" width="300" height="200"></canvas>
-    </div>
+        let Q = 0; 
+        let registrador = [0, 0, 0, 0]; 
+        let pulseCount = 0; 
 
-    <!-- Animação do Clock -->
-    <div class="clock-animation">
-        <h2>Animção do Clock</h2>
-        <div id="clockSignal"></div>
-    </div>
+        
+        function updateFlipFlop() {
+            const J = parseInt(document.getElementById('j').value);
+            const K = parseInt(document.getElementById('k').value);
+            const clock = parseInt(document.getElementById('clock').value);
+            const reset = parseInt(document.getElementById('reset').value);
 
-    <!-- Contador de Pulsos -->
-    <div class="pulse-counter">
-        <h2>Contador de Pulsos</h2>
-        <p>Pulsos de Clock: <span id="pulseCount">0</span></p>
-    </div>
+            
+            if (reset === 1) {
+                Q = 0;
+            } else if (clock === 1) { 
+                if (J === 0 && K === 0) {
+                    
+                } else if (J === 0 && K === 1) {
+                    Q = 0; 
+                } else if (J === 1 && K === 0) {
+                    Q = 1; 
+                } else if (J === 1 && K === 1) {
+                    Q = Q === 0 ? 1 : 0; 
+                }
+                pulseCount++; 
+                document.getElementById('pulseCount').textContent = pulseCount;
+            }
 
-    <!-- Registrador de 4 Bits -->
-    <div class="registrador">
-        <h2>Registrador de 4 Bits</h2>
-        <button onclick="updateRegistrador()">Atualizar Registrador</button>
-        <p>Estado do Registrador: <span id="registradorState">0000</span></p>
-    </div>
+            // Atualiza as saídas
+            updateLEDs();
+            drawFlipFlop();
 
-    <script src="script.js"></script>
+            // Animação do fluxo de dados
+            animateDataFlow(J, K, clock, reset);
+
+            // Atualiza os Flip-Flops do registrador
+            updateRegistradorDetails();
+        }
+
+        // Função para animar o fluxo de dados
+        function animateDataFlow(J, K, clock, reset) {
+            const canvas = document.getElementById('flipFlopCanvas');
+            const ctx = canvas.getContext('2d');
+
+            // Limpa o canvas
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+            // Desenha o Flip-Flop
+            drawFlipFlop();
+
+            // Animação das entradas
+            animateSignal(ctx, 20, 70, 50, 70, J, '#ff0000'); // Entrada J
+            animateSignal(ctx, 20, 120, 50, 120, K, '#0000ff'); // Entrada K
+            animateSignal(ctx, 270, 70, 250, 70, clock, '#007bff'); // Entrada Clock
+            animateSignal(ctx, 270, 120, 250, 120, reset, '#ff8800'); // Entrada Reset
+
+            // Animação das saídas
+            animateSignal(ctx, 250, 90, 280, 90, Q, '#00ff00'); // Saída Q
+            animateSignal(ctx, 250, 130, 280, 130, Q === 0 ? 1 : 0, '#ff00ff'); // Saída Q'
+        }
+
+        // Função para animar um sinal
+        function animateSignal(ctx, x1, y1, x2, y2, value, color) {
+            ctx.strokeStyle = color;
+            ctx.lineWidth = 2;
+
+            // Desenha a linha
+            ctx.beginPath();
+            ctx.moveTo(x1, y1);
+            ctx.lineTo(x2, y2);
+            ctx.stroke();
+
+            // Desenha o círculo (ponto de sinal)
+            if (value === 1) {
+                ctx.fillStyle = color;
+                ctx.beginPath();
+                ctx.arc(x2, y2, 5, 0, Math.PI * 2);
+                ctx.fill();
+            }
+        }
+
+        // Função para desenhar o Flip-Flop JK
+        function drawFlipFlop() {
+            const canvas = document.getElementById('flipFlopCanvas');
+            const ctx = canvas.getContext('2d');
+
+            // Limpa o canvas
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+            // Desenha o Flip-Flop
+            ctx.strokeStyle = '#000';
+            ctx.lineWidth = 2;
+
+            // Retângulo principal
+            ctx.strokeRect(50, 50, 200, 100);
+
+            // Entradas J, K, Clock e Reset
+            ctx.fillText("J", 20, 70);
+            ctx.fillText("K", 20, 120);
+            ctx.fillText("CLK", 270, 70);
+            ctx.fillText("RST", 270, 120);
+
+            // Saídas Q e Q'
+            ctx.fillText("Q", 260, 90);
+            ctx.fillText("Q'", 260, 130);
+        }
+
+        // Função para atualizar os LEDs
+        function updateLEDs() {
+            const ledQ = document.getElementById('ledQ');
+            const ledQNot = document.getElementById('ledQNot');
+
+            // Atualiza o LED de Q
+            if (Q === 1) {
+                ledQ.classList.remove('off');
+                ledQ.classList.add('on');
+            } else {
+                ledQ.classList.remove('on');
+                ledQ.classList.add('off');
+            }
+
+            // Atualiza o LED de Q'
+            if (Q === 0) {
+                ledQNot.classList.remove('off');
+                ledQNot.classList.add('on');
+            } else {
+                ledQNot.classList.remove('on');
+                ledQNot.classList.add('off');
+            }
+        }
+
+        // Função para atualizar o registrador de 4 bits
+        function updateRegistrador() {
+            // Desloca os bits para a esquerda e adiciona o novo valor de Q
+            registrador.shift(); // Remove o primeiro bit
+            registrador.push(Q); // Adiciona o novo bit no final
+
+            // Atualiza a exibição do registrador
+            document.getElementById('registradorState').textContent = registrador.join('');
+        }
+
+        // Função para atualizar os detalhes do registrador
+        function updateRegistradorDetails() {
+            document.getElementById('ff1').textContent = registrador[0];
+            document.getElementById('ff2').textContent = registrador[1];
+            document.getElementById('ff3').textContent = registrador[2];
+            document.getElementById('ff4').textContent = registrador[3];
+        }
+
+        // Inicializa o desenho do Flip-Flop
+        drawFlipFlop();
+
+        // Inicializa os LEDs
+        updateLEDs();
+
+        // Inicializa os detalhes do registrador
+        updateRegistradorDetails();
+    </script>
 </body>
 </html>
