@@ -30,32 +30,55 @@ function updateFlipFlop() {
     // Atualiza as saídas
     updateLEDs();
     drawFlipFlop();
+
+    // Animação do fluxo de dados
+    animateDataFlow(J, K, clock, reset);
+
+    // Atualiza os Flip-Flops do registrador
+    updateRegistradorDetails();
 }
 
-// Função para atualizar os LEDs
-function updateLEDs() {
-    const ledQ = document.getElementById('ledQ');
-    const ledQNot = document.getElementById('ledQNot');
+// Função para animar o fluxo de dados
+function animateDataFlow(J, K, clock, reset) {
+    const canvas = document.getElementById('flipFlopCanvas');
+    const ctx = canvas.getContext('2d');
 
-    // Atualiza o LED de Q
-    if (Q === 1) {
-        ledQ.classList.remove('off');
-        ledQ.classList.add('on');
-    } else {
-        ledQ.classList.remove('on');
-        ledQ.classList.add('off');
-    }
+    // Limpa o canvas
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-    // Atualiza o LED de Q'
-    if (Q === 0) {
-        ledQNot.classList.remove('off');
-        ledQNot.classList.add('on');
-    } else {
-        ledQNot.classList.remove('on');
-        ledQNot.classList.add('off');
-    }
+    // Desenha o Flip-Flop
+    drawFlipFlop();
+
+    // Animação das entradas
+    animateSignal(ctx, 20, 70, 50, 70, J, '#ff0000'); // Entrada J
+    animateSignal(ctx, 20, 120, 50, 120, K, '#0000ff'); // Entrada K
+    animateSignal(ctx, 270, 70, 250, 70, clock, '#007bff'); // Entrada Clock
+    animateSignal(ctx, 270, 120, 250, 120, reset, '#ff8800'); // Entrada Reset
+
+    // Animação das saídas
+    animateSignal(ctx, 250, 90, 280, 90, Q, '#00ff00'); // Saída Q
+    animateSignal(ctx, 250, 130, 280, 130, Q === 0 ? 1 : 0, '#ff00ff'); // Saída Q'
 }
 
+// Função para animar um sinal
+function animateSignal(ctx, x1, y1, x2, y2, value, color) {
+    ctx.strokeStyle = color;
+    ctx.lineWidth = 2;
+
+    // Desenha a linha
+    ctx.beginPath();
+    ctx.moveTo(x1, y1);
+    ctx.lineTo(x2, y2);
+    ctx.stroke();
+
+    // Desenha o círculo (ponto de sinal)
+    if (value === 1) {
+        ctx.fillStyle = color;
+        ctx.beginPath();
+        ctx.arc(x2, y2, 5, 0, Math.PI * 2);
+        ctx.fill();
+    }
+}
 
 // Função para desenhar o Flip-Flop JK
 function drawFlipFlop() {
@@ -83,7 +106,30 @@ function drawFlipFlop() {
     ctx.fillText("Q'", 260, 130);
 }
 
-// Função para atualizar o registrador de 4 bits
+// Função para atualizar os LEDs
+function updateLEDs() {
+    const ledQ = document.getElementById('ledQ');
+    const ledQNot = document.getElementById('ledQNot');
+
+    // Atualiza o LED de Q
+    if (Q === 1) {
+        ledQ.classList.remove('off');
+        ledQ.classList.add('on');
+    } else {
+        ledQ.classList.remove('on');
+        ledQ.classList.add('off');
+    }
+
+    // Atualiza o LED de Q'
+    if (Q === 0) {
+        ledQNot.classList.remove('off');
+        ledQNot.classList.add('on');
+    } else {
+        ledQNot.classList.remove('on');
+        ledQNot.classList.add('off');
+    }
+}
+
 // Função para atualizar o registrador de 4 bits
 function updateRegistrador() {
     // Desloca os bits para a esquerda e adiciona o novo valor de Q
@@ -94,8 +140,19 @@ function updateRegistrador() {
     document.getElementById('registradorState').textContent = registrador.join('');
 }
 
+// Função para atualizar os detalhes do registrador
+function updateRegistradorDetails() {
+    document.getElementById('ff1').textContent = registrador[0];
+    document.getElementById('ff2').textContent = registrador[1];
+    document.getElementById('ff3').textContent = registrador[2];
+    document.getElementById('ff4').textContent = registrador[3];
+}
+
 // Inicializa o desenho do Flip-Flop
 drawFlipFlop();
 
 // Inicializa os LEDs
 updateLEDs();
+
+// Inicializa os detalhes do registrador
+updateRegistradorDetails();
