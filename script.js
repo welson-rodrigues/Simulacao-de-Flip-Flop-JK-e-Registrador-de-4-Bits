@@ -30,9 +30,6 @@ function updateFlipFlop() {
     // Atualiza as saídas
     updateLEDs();
     drawFlipFlop();
-
-    // Redesenha o Flip-Flop
-    drawFlipFlop();
 }
 
 // Função para atualizar os LEDs
