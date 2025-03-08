@@ -1,4 +1,3 @@
-// Variáveis globais
 let Q = 0; // Estado atual do Flip-Flop
 let registrador = [0, 0, 0, 0]; // Registrador de 4 bits
 let pulseCount = 0; // Contador de pulsos
@@ -40,9 +39,9 @@ function updateFlipFlop() {
     // Controla a animação do clock
     const clockWave = document.getElementById('clockWave');
     if (clock === 0) {
-        clockWave.classList.add('paused'); // Pausa a animação
+        clockWave.classList.add('paused');
     } else {
-        clockWave.classList.remove('paused'); // Continua a animação
+        clockWave.classList.remove('paused');
     }
 }
 
@@ -58,10 +57,10 @@ function animateDataFlow(J, K, clock, reset) {
     drawFlipFlop();
 
     // Animação das entradas
-    animateSignal(ctx, 20, 70, 50, 70, J, '#ff0000'); // Entrada J
-    animateSignal(ctx, 20, 120, 50, 120, K, '#0000ff'); // Entrada K
-    animateSignal(ctx, 270, 70, 250, 70, clock, '#007bff'); // Entrada Clock
-    animateSignal(ctx, 270, 120, 250, 120, reset, '#ff8800'); // Entrada Reset
+    animateSignal(ctx, 20, 70, 50, 70, J, '#ff0000');
+    animateSignal(ctx, 20, 120, 50, 120, K, '#0000ff');
+    animateSignal(ctx, 270, 70, 250, 70, clock, '#007bff');
+    animateSignal(ctx, 270, 120, 250, 120, reset, '#ff8800');
 
     // Animação das saídas
     animateSignal(ctx, 250, 90, 280, 90, Q, '#00ff00'); // Saída Q

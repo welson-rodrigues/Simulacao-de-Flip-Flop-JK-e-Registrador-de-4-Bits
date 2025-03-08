@@ -12,7 +12,6 @@
     </header>
 
     <div class="container">
-        <!-- Explicação do Funcionamento -->
         <div class="explanation">
             <h2>Como Funciona?</h2>
             <p>
@@ -22,7 +21,6 @@
             </p>
         </div>
 
-        <!-- Flip-Flop JK -->
         <div class="flip-flop">
             <h2>Flip-Flop JK</h2>
             <div class="flip-flop-controls">
@@ -45,9 +43,7 @@
                 <button onclick="updateFlipFlop()">Atualizar Flip-Flop</button>
             </div>
             <div class="flip-flop-content">
-                <!-- Representação gráfica -->
                 <canvas id="flipFlopCanvas" width="300" height="200"></canvas>
-                <!-- Saídas Q e Q' com LEDs -->
                 <div class="output">
                     <p>Saída Q:</p>
                     <div id="ledQ" class="led off"></div>
@@ -57,9 +53,7 @@
             </div>
         </div>
 
-        <!-- Linha com Animação do Clock, Contador de Pulsos e Registrador de 4 Bits -->
         <div class="row">
-            <!-- Animação do Clock -->
             <div class="clock-animation">
                 <h2>Animação do Clock</h2>
                 <div id="clockSignal">
@@ -67,13 +61,13 @@
                 </div>
             </div>
 
-            <!-- Contador de Pulsos -->
+        
             <div class="pulse-counter">
                 <h2>Contador de Pulsos</h2>
                 <p>Pulsos de Clock: <span id="pulseCount">0</span></p>
             </div>
 
-            <!-- Registrador de 4 Bits -->
+
             <div class="registrador">
                 <h2>Registrador de 4 Bits</h2>
                 <button onclick="updateRegistrador()" class="btnatu">Atualizar Registrador</button>
