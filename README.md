@@ -64,9 +64,8 @@ A organização dos arquivos segue a estrutura abaixo:
 
 ```
 /Simulacao-de-Flip-Flop-JK-e-Registrador-de-4-Bits
-│── index.html       # Página principal do simulador
-│── styles.css       # Estilos para a interface
-│── script.js        # Código responsável pela lógica do Flip-Flop JK e Registrador de 4 Bits
-│── README.md        # Documentação do projeto
-│── LICENSE          # Licença do projeto
+│── index.html    
+│── styles.css      
+│── script.js      
+│── README.md      
 ```
