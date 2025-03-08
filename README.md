@@ -3,6 +3,9 @@
 ## Descrição
 Este projeto é uma simulação interativa de um Flip-Flop JK e um Registrador de 4 Bits. Ele permite visualizar e interagir com os conceitos de eletrônica digital, especialmente o funcionamento de flip-flops e registradores.
 
+## O que é um Flip-Flop JK?
+O Flip-Flop JK é um circuito sequencial capaz de armazenar 1 bit de informação (0 ou 1). Ele é uma evolução do Flip-Flop RS (Reset-Set), com a vantagem de não ter estados proibidos. Ele é amplamente utilizado em sistemas digitais para implementar registradores, contadores, máquinas de estado e outros circuitos sequenciais.
+
 ## Tecnologias Utilizadas
 - HTML
 - CSS
