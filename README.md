@@ -23,7 +23,7 @@ Este projeto é uma simulação interativa de um Flip-Flop JK e um Registrador d
 ## Estrutura do Projeto
 ```bash
 /
-├── index.html   # Estrutura principal da interface
-├── style.css    # Estilos visuais do projeto
-├── script.js    # Lógica da simulação e interatividade
+├── index.html
+├── style.css
+├── script.js
 ```
