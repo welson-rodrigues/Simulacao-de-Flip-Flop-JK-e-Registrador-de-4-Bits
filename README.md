@@ -21,8 +21,9 @@ Este projeto é uma simulação interativa de um Flip-Flop JK e um Registrador d
 4. Utilize o botão "Atualizar Registrador" para simular o armazenamento de bits no registrador de 4 bits.
 
 ## Estrutura do Projeto
-
+```bash
 /
 ├── index.html   # Estrutura principal da interface
 ├── style.css    # Estilos visuais do projeto
 ├── script.js    # Lógica da simulação e interatividade
+```
