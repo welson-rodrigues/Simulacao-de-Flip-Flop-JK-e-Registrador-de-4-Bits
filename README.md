@@ -63,11 +63,10 @@ Para executar o projeto, siga os passos abaixo:
 A organização dos arquivos segue a estrutura abaixo:
 
 ```
-/simulador_flipflop
+/Simulacao-de-Flip-Flop-JK-e-Registrador-de-4-Bits
 │── index.html       # Página principal do simulador
 │── styles.css       # Estilos para a interface
 │── script.js        # Código responsável pela lógica do Flip-Flop JK e Registrador de 4 Bits
-│── assets/          # Pasta para imagens, ícones e outros recursos visuais
 │── README.md        # Documentação do projeto
 │── LICENSE          # Licença do projeto
 ```
